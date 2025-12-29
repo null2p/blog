@@ -1,16 +1,14 @@
 export const siteConfig = {
-  name: 'My Blog',
+  name: '기술 블로그',
   description: 'A beautiful blog built with Next.js, MDX, and Liquid Glass',
-  url: 'https://yourusername.github.io/blog',
+  url: 'https://null2p.github.io/blog',
   author: {
-    name: 'Your Name',
-    email: 'your.email@example.com',
-    twitter: '@yourhandle',
-    github: 'yourusername',
+    name: 'Nuri Park',
+    email: 'pnr9255@gmail.com',
+    github: 'null2p',
   },
   links: {
-    github: 'https://github.com/yourusername',
-    twitter: 'https://twitter.com/yourhandle',
+    github: 'https://github.com/null2p',
   },
   // Giscus 댓글 설정 (나중에 활성화)
   giscus: {
