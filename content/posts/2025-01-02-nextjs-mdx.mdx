@@ -1,0 +1,103 @@
+---
+title: "Next.js에서 MDX 사용하기"
+date: "2025-01-02"
+description: "Next.js 프로젝트에서 MDX를 설정하고 사용하는 방법을 알아봅니다."
+tags: ["nextjs", "mdx", "tutorial"]
+draft: false
+---
+
+# Next.js에서 MDX 사용하기
+
+MDX는 마크다운 문서 안에서 JSX를 사용할 수 있게 해주는 강력한 도구입니다. 이 글에서는 Next.js 프로젝트에서 MDX를 설정하는 방법을 알아보겠습니다.
+
+## MDX란?
+
+MDX는 **Markdown + JSX**의 약자로, 마크다운 문서에 React 컴포넌트를 임베드할 수 있게 해줍니다.
+
+### 주요 장점
+
+- **컴포넌트 재사용**: 반복되는 UI 패턴을 컴포넌트로 만들어 사용
+- **인터랙티브**: 정적 콘텐츠에 동적 기능 추가
+- **타입 안전성**: TypeScript와 함께 사용 가능
+- **개발자 경험**: 마크다운의 간결함 + JSX의 강력함
+
+## 설치
+
+필요한 패키지들을 설치합니다:
+
+```bash
+npm install @next/mdx @mdx-js/loader @mdx-js/react
+npm install remark-gfm rehype-highlight
+```
+
+## Next.js 설정
+
+`next.config.ts` 파일을 다음과 같이 수정합니다:
+
+```typescript
+import createMDX from '@next/mdx';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
+
+const nextConfig = {
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+};
+
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [rehypeHighlight],
+  },
+});
+
+export default withMDX(nextConfig);
+```
+
+## 파일 구조
+
+콘텐츠를 관리하기 좋은 폴더 구조:
+
+```
+content/
+  posts/
+    2025-01-01-first-post.mdx
+    2025-01-02-second-post.mdx
+```
+
+## Frontmatter
+
+각 MDX 파일의 상단에 메타데이터를 추가합니다:
+
+```yaml
+---
+title: "포스트 제목"
+date: "2025-01-01"
+description: "포스트 설명"
+tags: ["tag1", "tag2"]
+---
+```
+
+## 커스텀 컴포넌트
+
+MDX에서 사용할 커스텀 컴포넌트를 만들 수 있습니다:
+
+```tsx
+// components/mdx/Callout.tsx
+export function Callout({ children, type = 'info' }) {
+  return (
+    <div className={`callout callout-${type}`}>
+      {children}
+    </div>
+  );
+}
+```
+
+## 결론
+
+MDX를 사용하면 정적 콘텐츠와 동적 컴포넌트를 자연스럽게 결합할 수 있습니다. Next.js와의 조합은 블로그나 문서 사이트를 만들기에 완벽한 선택입니다.
+
+---
+
+**참고 자료:**
+- [MDX 공식 문서](https://mdxjs.com/)
+- [Next.js MDX 가이드](https://nextjs.org/docs/app/building-your-application/configuring/mdx)

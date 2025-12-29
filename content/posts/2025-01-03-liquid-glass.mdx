@@ -1,0 +1,132 @@
+---
+title: "Liquid Glass UI로 멋진 디자인 만들기"
+date: "2025-01-03"
+description: "Liquid Glass React 라이브러리를 사용하여 아름다운 유리 효과 UI를 만드는 방법을 알아봅니다."
+tags: ["design", "ui", "react"]
+draft: false
+---
+
+# Liquid Glass UI로 멋진 디자인 만들기
+
+Liquid Glass는 Apple의 디자인에서 영감을 받은 유리 효과를 React 컴포넌트로 쉽게 구현할 수 있게 해주는 라이브러리입니다.
+
+## Liquid Glass란?
+
+Liquid Glass는 다음과 같은 특징을 가진 UI 효과입니다:
+
+- **투명도**: 배경이 비치는 유리 같은 효과
+- **블러**: 부드러운 배경 블러 처리
+- **굴절**: 빛의 굴절 효과
+- **반응성**: 마우스 인터랙션에 반응
+
+## 설치
+
+```bash
+npm install liquid-glass-react
+```
+
+## 기본 사용법
+
+가장 간단한 사용 예시:
+
+```tsx
+import LiquidGlass from 'liquid-glass-react';
+
+function Card() {
+  return (
+    <LiquidGlass>
+      <div className="card-content">
+        <h2>Beautiful Card</h2>
+        <p>With Liquid Glass effect</p>
+      </div>
+    </LiquidGlass>
+  );
+}
+```
+
+## 커스터마이징
+
+다양한 props로 효과를 조정할 수 있습니다:
+
+```tsx
+<LiquidGlass
+  displacementScale={70}    // 변위 효과 강도
+  blurAmount={0.0625}       // 흐림 정도
+  elasticity={0.15}         // 탄성
+>
+  {/* 콘텐츠 */}
+</LiquidGlass>
+```
+
+### 주요 Props
+
+| Prop | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `displacementScale` | number | 70 | 변위 효과 강도 |
+| `blurAmount` | number | 0.0625 | 흐림 정도 |
+| `elasticity` | number | 0.15 | 액체 느낌 강도 |
+
+## 실전 예제
+
+블로그 카드 컴포넌트:
+
+```tsx
+function BlogCard({ post }) {
+  return (
+    <div className="overflow-hidden rounded-2xl">
+      <LiquidGlass
+        displacementScale={60}
+        blurAmount={0.05}
+      >
+        <div className="bg-white/10 backdrop-blur-lg
+                        border border-white/20 p-6">
+          <h3>{post.title}</h3>
+          <p>{post.description}</p>
+        </div>
+      </LiquidGlass>
+    </div>
+  );
+}
+```
+
+## Tailwind CSS와 함께 사용
+
+Liquid Glass는 Tailwind CSS와 완벽하게 호환됩니다:
+
+```tsx
+<LiquidGlass>
+  <div className="
+    bg-white/10
+    backdrop-blur-lg
+    border border-white/20
+    rounded-xl
+    p-6
+    shadow-xl
+  ">
+    {/* 콘텐츠 */}
+  </div>
+</LiquidGlass>
+```
+
+## 성능 고려사항
+
+Liquid Glass 효과는 GPU를 사용하지만, 성능을 위해 다음을 고려하세요:
+
+1. **효과 강도 조절**: 필요한 만큼만 사용
+2. **모바일 최적화**: 낮은 성능 기기에서는 효과 줄이기
+3. **레이어 수 제한**: 너무 많은 효과 중첩 피하기
+
+## 브라우저 지원
+
+- ✅ Chrome, Edge (완전 지원)
+- ⚠️ Safari, Firefox (부분 지원)
+- ❌ IE (지원 안 함)
+
+## 결론
+
+Liquid Glass를 사용하면 프로페셔널한 유리 효과 UI를 쉽게 구현할 수 있습니다. 적절히 사용하면 웹사이트의 비주얼을 크게 향상시킬 수 있습니다!
+
+---
+
+**더 알아보기:**
+- [Liquid Glass React GitHub](https://github.com/rdev/liquid-glass-react)
