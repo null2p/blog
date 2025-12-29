@@ -18,7 +18,7 @@ export function LiquidGlassButton({
   className = '',
   variant = 'primary',
 }: LiquidGlassButtonProps) {
-  const baseStyles = 'relative inline-block overflow-hidden rounded-lg transition-transform hover:scale-105';
+  const baseStyles = 'relative inline-block rounded-lg transition-transform hover:scale-105';
   const variantStyles = {
     primary: 'bg-gradient-to-r from-blue-500/20 to-purple-500/20',
     secondary: 'bg-white/10',
