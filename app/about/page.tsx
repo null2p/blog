@@ -62,14 +62,14 @@ export default function AboutPage() {
                 GitHub
               </a>
             )}
-            {siteConfig.links.twitter && (
+            {siteConfig.links.linkedin && (
               <a
-                href={siteConfig.links.twitter}
+                href={siteConfig.links.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-400 hover:text-blue-300 underline transition"
               >
-                Twitter
+                LinkedIn
               </a>
             )}
             <a

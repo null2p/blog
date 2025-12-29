@@ -5,10 +5,12 @@ export const siteConfig = {
   author: {
     name: 'Nuri Park',
     email: 'pnr9255@gmail.com',
+    linkedin: 'null2p',
     github: 'null2p',
   },
   links: {
     github: 'https://github.com/null2p',
+    linkedin: 'https://linkedin.com/in/null2p',
   },
   // Giscus 댓글 설정 (나중에 활성화)
   giscus: {

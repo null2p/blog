@@ -23,14 +23,14 @@ export function Footer() {
                 GitHub
               </a>
             )}
-            {siteConfig.links.twitter && (
+            {siteConfig.links.linkedin && (
               <a
-                href={siteConfig.links.twitter}
+                href={siteConfig.links.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/60 hover:text-white transition text-sm"
               >
-                Twitter
+                LinkedIn
               </a>
             )}
           </div>
