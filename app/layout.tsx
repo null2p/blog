@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <body className="antialiased font-sans">
         <Header />
         <main className="relative z-10 pt-24 px-4 min-h-screen">

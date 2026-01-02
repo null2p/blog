@@ -32,19 +32,29 @@ export function LiquidGlassButton({
 
   if (href) {
     return (
-      <a href={href} className={`${baseStyles} ${variantStyles[variant]} ${className}`}>
-        <LiquidGlass displacementScale={40} blurAmount={0.04} elasticity={0.2}>
-          {content}
-        </LiquidGlass>
+      <a href={href} className={`${baseStyles} ${variantStyles[variant]} ${className} overflow-hidden`}>
+        <div className="absolute inset-0 z-0 [&_span]:hidden">
+          <LiquidGlass displacementScale={40} blurAmount={0.5} elasticity={0.2}>
+            <div className="w-full h-full bg-white/5 backdrop-blur-md border border-white/20" />
+          </LiquidGlass>
+        </div>
+        <div className="relative z-10 px-6 py-3">
+          <span className="font-medium text-white">{children}</span>
+        </div>
       </a>
     );
   }
 
   return (
-    <button onClick={onClick} className={`${baseStyles} ${variantStyles[variant]} ${className}`}>
-      <LiquidGlass displacementScale={40} blurAmount={0.04} elasticity={0.2}>
-        {content}
-      </LiquidGlass>
+    <button onClick={onClick} className={`${baseStyles} ${variantStyles[variant]} ${className} overflow-hidden`}>
+      <div className="absolute inset-0 z-0">
+        <LiquidGlass displacementScale={40} blurAmount={0.04} elasticity={0.2}>
+          <div className="w-full h-full bg-white/5 backdrop-blur-md border border-white/20" />
+        </LiquidGlass>
+      </div>
+      <div className="relative z-10 px-6 py-3">
+        <span className="font-medium text-white">{children}</span>
+      </div>
     </button>
   );
 }
