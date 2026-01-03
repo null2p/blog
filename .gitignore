@@ -24,6 +24,12 @@
 .DS_Store
 *.pem
 
+# IDE
+.idea/
+
+# Playwright MCP
+.playwright-mcp/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
