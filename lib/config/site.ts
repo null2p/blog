@@ -31,6 +31,7 @@ export const siteConfig = {
     { name: 'Home', href: '/' },
     { name: 'Posts', href: '/posts' },
     { name: 'Tags', href: '/tags' },
+    { name: 'Playground', href: '/playground' },
     { name: 'About', href: '/about' },
   ],
 };

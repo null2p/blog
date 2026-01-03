@@ -1,4 +1,5 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import { LiquidGlassCard } from '@/components/ui/LiquidGlassCard';
 
 interface MDXContentProps {
   source: string;
@@ -42,7 +43,7 @@ const components = {
     if (isInline) {
       return (
         <code
-          className="px-1.5 py-0.5 bg-white/10 rounded text-sm text-pink-300 font-mono"
+          className="px-1.5 py-0.5 bg-white/10 rounded text-sm text-pink-300 font-mono text-shadow-lg"
           {...rest}
         >
           {children}
@@ -50,6 +51,7 @@ const components = {
       );
     }
 
+    // 코드 블록 내 code - highlight.js 스타일 유지
     return (
       <code className={className} {...rest}>
         {children}
@@ -57,7 +59,9 @@ const components = {
     );
   },
   pre: (props: any) => (
-    <pre className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-lg p-4 overflow-x-auto mb-4" {...props} />
+    <LiquidGlassCard className="mb-4" noPadding={true}>
+      <pre className="p-4 overflow-x-auto !m-0" {...props} />
+    </LiquidGlassCard>
   ),
   blockquote: (props: any) => (
     <blockquote className="border-l-4 border-purple-500 pl-4 py-2 my-4 bg-white/5 rounded-r-lg text-white/80 italic" {...props} />

@@ -15,10 +15,10 @@ export function PostCard({ post }: PostCardProps) {
       <LiquidGlassCard className="hover:scale-[1.02] transition-transform duration-300 cursor-pointer h-full">
         <div className="space-y-4">
           <div>
-            <h3 className="text-2xl font-bold text-white mb-2 line-clamp-2">
+            <h3 className="text-2xl font-bold text-white text-shadow-lg mb-2 line-clamp-2">
               {title}
             </h3>
-            <div className="flex items-center gap-4 text-sm text-white/60">
+            <div className="flex items-center gap-4 text-sm text-white/60 text-shadow-lg">
               <time dateTime={date}>
                 {new Date(date).toLocaleDateString('ko-KR', {
                   year: 'numeric',
@@ -30,7 +30,7 @@ export function PostCard({ post }: PostCardProps) {
             </div>
           </div>
 
-          <p className="text-white/80 line-clamp-3">
+          <p className="text-white/80 text-shadow-lg line-clamp-3">
             {description}
           </p>
 
@@ -39,7 +39,7 @@ export function PostCard({ post }: PostCardProps) {
               {tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 text-xs font-medium bg-white/10 rounded-full text-white/80"
+                  className="px-3 py-1 text-xs font-medium bg-white/10 rounded-full text-white/80 text-shadow-lg"
                 >
                   #{tag}
                 </span>
