@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import LiquidGlass from 'liquid-glass-react';
+import LiquidGlass from '@nkzw/liquid-glass';
 
 type LiquidGlassMode = 'standard' | 'polar' | 'prominent' | 'shader';
 
@@ -95,7 +95,7 @@ export default function PlaygroundPage() {
             saturation={saturation}
             aberrationIntensity={aberrationIntensity}
             elasticity={elasticity}
-            cornerRadius={cornerRadius}
+            borderRadius={cornerRadius}
             mouseContainer={containerRef}
             overLight={scrollingOverBrightSection || overLight}
             mode={mode}
@@ -144,7 +144,7 @@ export default function PlaygroundPage() {
             saturation={btnSaturation}
             aberrationIntensity={btnAberrationIntensity}
             elasticity={btnElasticity}
-            cornerRadius={btnCornerRadius}
+            borderRadius={btnCornerRadius}
             mouseContainer={containerRef}
             overLight={scrollingOverBrightSection || btnOverLight}
             mode={btnMode}

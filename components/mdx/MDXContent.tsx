@@ -1,5 +1,9 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
 import { LiquidGlassCard } from '@/components/ui/LiquidGlassCard';
+import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton';
+import { LiquidGlassPanel } from '@/components/ui/LiquidGlassPanel';
 
 interface MDXContentProps {
   source: string;
@@ -17,7 +21,7 @@ const components = {
     <h3 className="text-2xl font-bold text-white mt-4 mb-2" {...props} />
   ),
   p: (props: any) => (
-    <p className="text-white/80 leading-7 mb-4" {...props} />
+    <div className="text-white/80 leading-7 mb-4" {...props} />
   ),
   a: (props: any) => (
     <a
@@ -53,15 +57,16 @@ const components = {
 
     // 코드 블록 내 code - highlight.js 스타일 유지
     return (
-      <code className={className} {...rest}>
+      <code className={`${className} !bg-transparent`} {...rest}>
         {children}
       </code>
     );
   },
   pre: (props: any) => (
-    <LiquidGlassCard className="mb-4" noPadding={true}>
-      <pre className="p-4 overflow-x-auto !m-0" {...props} />
-    </LiquidGlassCard>
+    <pre
+      className="p-4 mb-4 overflow-x-auto rounded-xl bg-black/40 backdrop-blur-md border border-white/10"
+      {...props}
+    />
   ),
   blockquote: (props: any) => (
     <blockquote className="border-l-4 border-purple-500 pl-4 py-2 my-4 bg-white/5 rounded-r-lg text-white/80 italic" {...props} />
@@ -80,6 +85,9 @@ const components = {
   td: (props: any) => (
     <td className="border border-white/10 px-4 py-2 text-white/80" {...props} />
   ),
+  LiquidGlassCard,
+  LiquidGlassButton,
+  LiquidGlassPanel,
 };
 
 export function MDXContent({ source }: MDXContentProps) {
@@ -88,6 +96,12 @@ export function MDXContent({ source }: MDXContentProps) {
       <MDXRemote
         source={source}
         components={components}
+        options={{
+          mdxOptions: {
+            remarkPlugins: [remarkGfm],
+            rehypePlugins: [rehypeHighlight],
+          },
+        }}
       />
     </div>
   );

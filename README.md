@@ -17,7 +17,7 @@ A beautiful blog built with Next.js, MDX, and Liquid Glass, deployed on GitHub P
 - **Framework**: Next.js 16
 - **Content**: MDX (Markdown + JSX)
 - **Styling**: Tailwind CSS 4
-- **UI Library**: Liquid Glass React
+- **UI Library**: Liquid Glass
 - **Deployment**: GitHub Pages + GitHub Actions
 
 ## Getting Started
@@ -139,6 +139,6 @@ MIT
 ## Credits
 
 - [Next.js](https://nextjs.org/)
-- [Liquid Glass React](https://github.com/rdev/liquid-glass-react)
+- [Liquid Glass](https://github.com/nkzw-tech/liquid-glass)
 - [MDX](https://mdxjs.com/)
 - [Tailwind CSS](https://tailwindcss.com/)

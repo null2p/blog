@@ -1,7 +1,7 @@
 ---
 title: "Liquid Glass UI로 멋진 디자인 만들기"
 date: "2025-01-03"
-description: "Liquid Glass React 라이브러리를 사용하여 아름다운 유리 효과 UI를 만드는 방법을 알아봅니다."
+description: "Liquid Glass 라이브러리를 사용하여 아름다운 유리 효과 UI를 만드는 방법을 알아봅니다."
 tags: ["design", "ui", "react"]
 draft: false
 ---
@@ -22,40 +22,54 @@ Liquid Glass는 다음과 같은 특징을 가진 UI 효과입니다:
 ## 설치
 
 ```bash
-npm install liquid-glass-react
+npm install @nkzw/liquid-glass
 ```
 
 ## 기본 사용법
 
 가장 간단한 사용 예시:
 
-```tsx
-import LiquidGlass from 'liquid-glass-react';
+<LiquidGlassPanel className="p-8 mb-8">
+  <div className="text-center">
+    <h2 className="text-2xl font-bold mb-2">Beautiful Card</h2>
+    <p>This is a live component!</p>
+  </div>
+</LiquidGlassPanel>
 
-function Card() {
-  return (
-    <LiquidGlass>
-      <div className="card-content">
-        <h2>Beautiful Card</h2>
-        <p>With Liquid Glass effect</p>
-      </div>
-    </LiquidGlass>
-  );
-}
+```tsx
+<LiquidGlassPanel>
+  <div className="card-content">
+    <h2>Beautiful Card</h2>
+    <p>With Liquid Glass effect</p>
+  </div>
+</LiquidGlassPanel>
 ```
 
 ## 커스터마이징
 
 다양한 props로 효과를 조정할 수 있습니다:
 
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+  <LiquidGlassCard displacementScale={20} blurAmount={0.02}>
+    <div className="p-4 text-center">
+      <p>Low Effect</p>
+    </div>
+  </LiquidGlassCard>
+  <LiquidGlassCard displacementScale={100} blurAmount={0.1}>
+    <div className="p-4 text-center">
+      <p>High Effect</p>
+    </div>
+  </LiquidGlassCard>
+</div>
+
 ```tsx
-<LiquidGlass
+<LiquidGlassCard
   displacementScale={70}    // 변위 효과 강도
   blurAmount={0.0625}       // 흐림 정도
   elasticity={0.15}         // 탄성
 >
   {/* 콘텐츠 */}
-</LiquidGlass>
+</LiquidGlassCard>
 ```
 
 ### 주요 Props
@@ -70,21 +84,30 @@ function Card() {
 
 블로그 카드 컴포넌트:
 
+<div className="mb-8">
+    <LiquidGlassCard displacementScale={60} blurAmount={0.05}>
+        <div className="p-6">
+          <h3 className="text-xl font-bold mb-2">My Awesome Post</h3>
+          <p className="opacity-80">This is how a blog card looks with Liquid Glass effect.</p>
+          <div className="mt-4">
+             <LiquidGlassButton>Read More</LiquidGlassButton>
+          </div>
+        </div>
+    </LiquidGlassCard>
+</div>
+
 ```tsx
 function BlogCard({ post }) {
   return (
-    <div className="overflow-hidden rounded-2xl">
-      <LiquidGlass
+    <LiquidGlassCard
         displacementScale={60}
         blurAmount={0.05}
-      >
-        <div className="bg-white/10 backdrop-blur-lg
-                        border border-white/20 p-6">
-          <h3>{post.title}</h3>
-          <p>{post.description}</p>
+    >
+        <div className="p-6">
+            <h3>{post.title}</h3>
+            <p>{post.description}</p>
         </div>
-      </LiquidGlass>
-    </div>
+    </LiquidGlassCard>
   );
 }
 ```
@@ -93,19 +116,16 @@ function BlogCard({ post }) {
 
 Liquid Glass는 Tailwind CSS와 완벽하게 호환됩니다:
 
+<LiquidGlassPanel className="p-6 shadow-xl border-t border-white/20">
+    <span className="text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 block">
+        Styled with Tailwind CSS
+    </span>
+</LiquidGlassPanel>
+
 ```tsx
-<LiquidGlass>
-  <div className="
-    bg-white/10
-    backdrop-blur-lg
-    border border-white/20
-    rounded-xl
-    p-6
-    shadow-xl
-  ">
+<LiquidGlassPanel className="p-6 shadow-xl border-t border-white/20">
     {/* 콘텐츠 */}
-  </div>
-</LiquidGlass>
+</LiquidGlassPanel>
 ```
 
 ## 성능 고려사항
@@ -129,4 +149,4 @@ Liquid Glass를 사용하면 프로페셔널한 유리 효과 UI를 쉽게 구�
 ---
 
 **더 알아보기:**
-- [Liquid Glass React GitHub](https://github.com/rdev/liquid-glass-react)
+- [Liquid Glass GitHub](https://github.com/nkzw-tech/liquid-glass)
