@@ -9,8 +9,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
 body {
@@ -18,9 +19,68 @@ body {
   background-size: cover;
   min-height: 100vh;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), Georgia, serif;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
   position: relative;
   overflow-x: hidden;
+}
+
+/* Typography - Display font for headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2.25rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* Code typography */
+code, pre, kbd, samp {
+  font-family: var(--font-mono), 'Courier New', monospace;
+}
+
+pre {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+code {
+  font-size: 0.875em;
+  font-weight: 400;
+}
+
+/* Light weight for subtle text */
+.font-light {
+  font-weight: 200;
+}
+
+/* Display font utility */
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+/* Body font utility */
+.font-body {
+  font-family: var(--font-body), Georgia, serif;
+}
+
+/* Mono font utility */
+.font-mono {
+  font-family: var(--font-mono), 'Courier New', monospace;
 }
 
 /* Dark overlay for better text readability */

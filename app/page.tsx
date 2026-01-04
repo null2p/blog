@@ -9,10 +9,10 @@ export default function HomePage() {
     <div className="space-y-16">
       {/* Hero Section */}
       <section className="text-center py-20">
-        <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+        <h1 className="text-6xl md:text-7xl font-display font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent tracking-tight">
           Welcome to My Blog
         </h1>
-        <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto">
+        <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto font-body font-light leading-relaxed">
           Exploring technology, design, and everything in between with a touch of Liquid Glass
         </p>
         <div className="flex gap-4 justify-center">
@@ -28,7 +28,7 @@ export default function HomePage() {
       {/* Featured Posts */}
       <section>
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-4xl font-bold text-white">Featured Posts</h2>
+          <h2 className="text-4xl font-display font-bold text-white tracking-tight">Featured Posts</h2>
           <LiquidGlassButton href="/posts" variant="secondary">
             View All
           </LiquidGlassButton>

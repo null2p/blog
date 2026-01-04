@@ -12,8 +12,8 @@ export default function PostsPage() {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h1 className="text-5xl font-bold text-white mb-4">All Posts</h1>
-        <p className="text-xl text-white/70">
+        <h1 className="text-5xl font-display font-bold text-white mb-4 tracking-tight">All Posts</h1>
+        <p className="text-xl text-white/70 font-body font-light">
           {posts.length} {posts.length === 1 ? 'post' : 'posts'} published
         </p>
       </div>

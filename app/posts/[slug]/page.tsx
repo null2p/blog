@@ -37,11 +37,11 @@ export default async function PostPage({ params }: PostPageProps) {
       {/* Post Header */}
       <LiquidGlassCard className="mb-8">
         <div className="space-y-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">
+          <h1 className="text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
             {title}
           </h1>
 
-          <p className="text-xl text-white/70">
+          <p className="text-xl text-white/70 font-body font-light leading-relaxed">
             {description}
           </p>
 

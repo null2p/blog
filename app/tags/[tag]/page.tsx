@@ -29,10 +29,10 @@ export default async function TagPage({ params }: TagPageProps) {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h1 className="text-5xl font-bold text-white mb-4">
+        <h1 className="text-5xl font-display font-bold text-white mb-4 tracking-tight">
           <span className="text-purple-400">#{tag}</span>
         </h1>
-        <p className="text-xl text-white/70">
+        <p className="text-xl text-white/70 font-body font-light">
           {posts.length} {posts.length === 1 ? 'post' : 'posts'} tagged with {tag}
         </p>
       </div>

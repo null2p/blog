@@ -13,8 +13,8 @@ export default function TagsPage() {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h1 className="text-5xl font-bold text-white mb-4">All Tags</h1>
-        <p className="text-xl text-white/70">
+        <h1 className="text-5xl font-display font-bold text-white mb-4 tracking-tight">All Tags</h1>
+        <p className="text-xl text-white/70 font-body font-light">
           Browse posts by topic
         </p>
       </div>
@@ -27,7 +27,7 @@ export default function TagsPage() {
               <Link key={tag} href={`/tags/${tag}`}>
                 <LiquidGlassCard className="hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
                   <div className="text-center py-8">
-                    <h2 className="text-3xl font-bold text-purple-400 mb-2">
+                    <h2 className="text-3xl font-display font-bold text-purple-400 mb-2 tracking-tight">
                       #{tag}
                     </h2>
                     <p className="text-white/60">

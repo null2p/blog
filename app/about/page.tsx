@@ -10,23 +10,23 @@ export default function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <div className="text-center">
-        <h1 className="text-5xl font-bold text-white mb-4">About</h1>
-        <p className="text-xl text-white/70">
+        <h1 className="text-5xl font-display font-bold text-white mb-4 tracking-tight">About</h1>
+        <p className="text-xl text-white/70 font-body font-light">
           Learn more about me and this blog
         </p>
       </div>
 
       <LiquidGlassCard>
         <div className="prose prose-invert max-w-none space-y-6">
-          <h2 className="text-3xl font-bold text-white">Welcome!</h2>
+          <h2 className="text-3xl font-display font-bold text-white tracking-tight">Welcome!</h2>
 
-          <p className="text-white/80 leading-7">
+          <p className="text-white/80 leading-7 font-body">
             안녕하세요! 이 블로그는 기술, 디자인, 그리고 개발에 대한 이야기를 나누는 공간입니다.
           </p>
 
-          <h3 className="text-2xl font-bold text-white mt-6">기술 스택</h3>
+          <h3 className="text-2xl font-display font-bold text-white mt-6 tracking-tight">기술 스택</h3>
 
-          <p className="text-white/80 leading-7">
+          <p className="text-white/80 leading-7 font-body">
             이 블로그는 다음 기술들로 만들어졌습니다:
           </p>
 
@@ -38,7 +38,7 @@ export default function AboutPage() {
             <li><strong>GitHub Pages</strong> - 무료 정적 호스팅</li>
           </ul>
 
-          <h3 className="text-2xl font-bold text-white mt-6">특징</h3>
+          <h3 className="text-2xl font-display font-bold text-white mt-6 tracking-tight">특징</h3>
 
           <ul className="list-disc list-inside text-white/80 space-y-2">
             <li>완전한 정적 사이트 (Static Export)</li>
@@ -49,7 +49,7 @@ export default function AboutPage() {
             <li>읽기 시간 표시</li>
           </ul>
 
-          <h3 className="text-2xl font-bold text-white mt-6">연락처</h3>
+          <h3 className="text-2xl font-display font-bold text-white mt-6 tracking-tight">연락처</h3>
 
           <div className="flex gap-4 mt-4">
             {siteConfig.links.github && (

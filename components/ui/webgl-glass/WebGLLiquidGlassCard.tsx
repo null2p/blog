@@ -33,7 +33,7 @@ export function WebGLLiquidGlassCard({
   elasticity = 0.15,
   saturation = 140,
   aberrationIntensity = 2,
-  cornerRadius = 16,
+  cornerRadius = 50,
   noPadding = false,
   style,
 }: WebGLLiquidGlassCardProps) {
@@ -167,10 +167,17 @@ export function WebGLLiquidGlassCard({
         {children}
       </div>
 
-      {/* Glass edge highlight */}
+      {/* 3D Bezel effect - macOS liquid-glass style */}
       <div
-        className="absolute inset-0 pointer-events-none border border-white/20"
-        style={{ borderRadius: cornerRadius }}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          borderRadius: cornerRadius,
+          borderTop: '1px solid rgba(255, 255, 255, 0.35)',
+          borderLeft: '1px solid rgba(255, 255, 255, 0.25)',
+          borderBottom: '1px solid rgba(0, 0, 0, 0.25)',
+          borderRight: '1px solid rgba(0, 0, 0, 0.15)',
+          boxShadow: 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.1)',
+        }}
       />
     </div>
   );

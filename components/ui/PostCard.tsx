@@ -17,7 +17,7 @@ export function PostCard({ post }: PostCardProps) {
       <LiquidGlassCard className="hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
         <div className="space-y-4 min-w-[280px]">
           <div>
-            <h3 className="text-xl font-bold text-white text-shadow-lg mb-2 line-clamp-2">
+            <h3 className="text-xl font-display font-bold text-white text-shadow-lg mb-2 line-clamp-2 tracking-tight">
               {title}
             </h3>
             <div className="flex items-center gap-4 text-sm text-white/60 text-shadow-lg">
