@@ -7,16 +7,17 @@ import React, {
   CSSProperties,
 } from 'react';
 import { useScrollSync } from './hooks/useScrollSync';
-import { useMouseInteraction } from './hooks/useMouseInteraction';
+import { useWebGLRenderer } from './hooks/useWebGLRenderer';
+import { vertexShader } from './shaders/vertex';
+import { fragmentShader } from './shaders/fragment';
 
 export interface WebGLLiquidGlassCardProps {
   children: React.ReactNode;
   className?: string;
-  displacementScale?: number;
   blurAmount?: number;
-  elasticity?: number;
   saturation?: number;
   aberrationIntensity?: number;
+  refractionStrength?: number;
   cornerRadius?: number;
   noPadding?: boolean;
   style?: CSSProperties;
@@ -28,60 +29,62 @@ const BG_IMAGE = '/images/space-bg.jpg';
 export function WebGLLiquidGlassCard({
   children,
   className = '',
-  displacementScale = 70,
-  blurAmount = 0.0625,
-  elasticity = 0.15,
+  blurAmount = 0.5,
   saturation = 140,
   aberrationIntensity = 2,
+  refractionStrength = 3,
   cornerRadius = 50,
   noPadding = false,
   style,
 }: WebGLLiquidGlassCardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [mounted, setMounted] = useState(false);
 
-  const { position, viewportSize } = useScrollSync(containerRef);
-  const mouse = useMouseInteraction(containerRef, { elasticity });
+  const { position } = useScrollSync(containerRef);
 
   const padding = noPadding ? '0' : '24px';
   const ghostPadding = noPadding ? '' : 'p-6';
 
-  // Calculate blur based on props (convert to pixels)
-  const blurPx = Math.round(blurAmount * 200);
-
-  // Calculate saturation filter
-  const saturationValue = saturation / 100;
-
-  // Calculate background position to align with page background
-  // Both page background and this layer use CSS background-size: cover,
-  // so centering is handled automatically - just offset by element position
-  const calculateBgPosition = () => {
-    if (!mounted || viewportSize.width === 0) {
-      return { x: 0, y: 0 };
+  // Initialize WebGL renderer
+  const { updateUniforms } = useWebGLRenderer(
+    canvasRef,
+    BG_IMAGE,
+    {
+      vertexShader,
+      fragmentShader,
     }
-    return {
-      x: -position.x,
-      y: -position.y,
-    };
-  };
-
-  const bgPos = calculateBgPosition();
-
-  // Mouse-based displacement effect (only after mount)
-  const mouseDisplacement = mounted ? {
-    x: (mouse.normalizedX - 0.5) * displacementScale * 0.1,
-    y: (mouse.normalizedY - 0.5) * displacementScale * 0.1,
-  } : { x: 0, y: 0 };
-
-  // Use consistent values for SSR - switch to dynamic values only after mount
-  const bgWidth = mounted ? viewportSize.width : '100vw';
-  const bgHeight = mounted ? viewportSize.height : '100vh';
-  const bgLeft = mounted ? bgPos.x + mouseDisplacement.x : 0;
-  const bgTop = mounted ? bgPos.y + mouseDisplacement.y : 0;
+  );
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Update uniforms when position changes
+  useEffect(() => {
+    if (!mounted || !containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+
+    updateUniforms({
+      u_resolution: [window.innerWidth, window.innerHeight],
+      u_elementPos: [rect.left, rect.top],
+      u_elementSize: [rect.width, rect.height],
+      u_aberrationIntensity: aberrationIntensity,
+      u_blurAmount: blurAmount,
+      u_saturation: saturation,
+      u_refractionStrength: refractionStrength,
+      u_time: performance.now() / 1000,
+    });
+  }, [
+    mounted,
+    position,
+    aberrationIntensity,
+    blurAmount,
+    saturation,
+    refractionStrength,
+    updateUniforms,
+  ]);
 
   return (
     <div
@@ -97,67 +100,17 @@ export function WebGLLiquidGlassCard({
         {children}
       </div>
 
-      {/* Replicated background with blur effect */}
-      <div
-        className="absolute inset-0 overflow-hidden"
-        style={{ borderRadius: cornerRadius }}
-      >
-        {/* Background image layer */}
-        <div
-          className="absolute transition-transform duration-100"
+      {/* WebGL Canvas for glass effect (refraction + aberration) + CSS blur */}
+      {mounted && (
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 w-full h-full"
           style={{
-            backgroundImage: `url(${BG_IMAGE})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            width: bgWidth,
-            height: bgHeight,
-            left: bgLeft,
-            top: bgTop,
-            filter: `blur(${blurPx}px) saturate(${saturationValue})`,
-            transform: 'scale(1.1)', // Prevent blur edge artifacts
+            borderRadius: cornerRadius,
+            filter: `blur(${4 + blurAmount * 32}px)`,
           }}
         />
-
-        {/* Chromatic aberration simulation layers */}
-        {aberrationIntensity > 0 && mounted && (
-          <>
-            <div
-              className="absolute mix-blend-screen opacity-30 transition-transform duration-100"
-              style={{
-                backgroundImage: `url(${BG_IMAGE})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                width: bgWidth,
-                height: bgHeight,
-                left: bgLeft + aberrationIntensity,
-                top: bgTop,
-                filter: `blur(${blurPx}px) saturate(${saturationValue})`,
-                transform: 'scale(1.1)',
-              }}
-            />
-            <div
-              className="absolute mix-blend-screen opacity-30 transition-transform duration-100"
-              style={{
-                backgroundImage: `url(${BG_IMAGE})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                width: bgWidth,
-                height: bgHeight,
-                left: bgLeft - aberrationIntensity,
-                top: bgTop,
-                filter: `blur(${blurPx}px) saturate(${saturationValue}) hue-rotate(10deg)`,
-                transform: 'scale(1.1)',
-              }}
-            />
-          </>
-        )}
-
-        {/* Glass tint overlay */}
-        <div
-          className="absolute inset-0 bg-white/5"
-          style={{ borderRadius: cornerRadius }}
-        />
-      </div>
+      )}
 
       {/* Content overlay */}
       <div

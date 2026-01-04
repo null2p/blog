@@ -73,10 +73,19 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
       </LiquidGlassCard>
 
-      {/* Post Content */}
-      <LiquidGlassCard>
+      {/* Post Content - CSS-based glass effect (no WebGL for performance) */}
+      <div
+        className="p-6 rounded-[50px] bg-black/20 backdrop-blur-md border border-white/10"
+        style={{
+          borderTop: '1px solid rgba(255, 255, 255, 0.35)',
+          borderLeft: '1px solid rgba(255, 255, 255, 0.25)',
+          borderBottom: '1px solid rgba(0, 0, 0, 0.25)',
+          borderRight: '1px solid rgba(0, 0, 0, 0.15)',
+          boxShadow: 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.1)',
+        }}
+      >
         <MDXContent source={post.content} />
-      </LiquidGlassCard>
+      </div>
     </article>
   );
 }

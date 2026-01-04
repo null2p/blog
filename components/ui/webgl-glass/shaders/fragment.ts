@@ -6,20 +6,13 @@ export const fragmentShader = `
   uniform vec2 u_elementPos;
   uniform vec2 u_elementSize;
   uniform vec2 u_bgSize;
-  uniform vec2 u_mousePos;
-  uniform float u_mouseRadius;
-  uniform float u_displacementScale;
   uniform float u_aberrationIntensity;
   uniform float u_blurAmount;
   uniform float u_saturation;
+  uniform float u_refractionStrength;
   uniform float u_time;
 
   varying vec2 v_texCoord;
-
-  // Simple pseudo-random
-  float random(vec2 st) {
-    return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
-  }
 
   // Saturation adjustment
   vec3 adjustSaturation(vec3 color, float sat) {
@@ -27,34 +20,16 @@ export const fragmentShader = `
     return mix(grey, color, sat);
   }
 
-  // Simple blur using multiple samples
-  vec4 blur(sampler2D tex, vec2 uv, vec2 texelSize, float radius) {
-    vec4 color = vec4(0.0);
-    float total = 0.0;
-
-    for (float x = -2.0; x <= 2.0; x += 1.0) {
-      for (float y = -2.0; y <= 2.0; y += 1.0) {
-        vec2 offset = vec2(x, y) * texelSize * radius;
-        float weight = 1.0 - length(vec2(x, y)) / 3.0;
-        weight = max(weight, 0.0);
-        color += texture2D(tex, uv + offset) * weight;
-        total += weight;
-      }
-    }
-
-    return color / total;
-  }
 
   void main() {
-    // Convert fragment coordinates to UV
     vec2 fragUV = v_texCoord;
 
-    // Calculate background UV based on element position
-    // This maps the element position to the background image with cover behavior
+    // Calculate the screen position of this fragment
+    // u_elementPos is the top-left corner of the element in screen coordinates
     vec2 screenPos = u_elementPos + fragUV * u_elementSize;
 
-    // Calculate cover UV - the background image covers the viewport
-    // We need to figure out how the background is positioned
+    // Calculate background UV with cover behavior
+    // The background image covers the entire viewport
     float bgAspect = u_bgSize.x / u_bgSize.y;
     float screenAspect = u_resolution.x / u_resolution.y;
 
@@ -75,33 +50,33 @@ export const fragmentShader = `
       bgUV.y = (screenPos.y + offsetY) / scaledHeight;
     }
 
-    // Mouse displacement
-    vec2 mouseUV = u_mousePos;
-    vec2 toMouse = fragUV - mouseUV;
-    float mouseDist = length(toMouse);
-    float mouseInfluence = smoothstep(u_mouseRadius, 0.0, mouseDist);
+    // Clamp UV to valid range
+    bgUV = clamp(bgUV, 0.0, 1.0);
 
-    // Displacement based on mouse
-    vec2 displacement = normalize(toMouse + 0.001) * mouseInfluence * u_displacementScale * 0.001;
+    // Edge refraction - 가장자리 굴절 효과
+    // Calculate distance from edge (0 = edge, 1 = center)
+    float edgeDistX = min(fragUV.x, 1.0 - fragUV.x) * 2.0;
+    float edgeDistY = min(fragUV.y, 1.0 - fragUV.y) * 2.0;
+    float edgeDist = min(edgeDistX, edgeDistY);
 
-    // Add subtle wave animation
-    float wave = sin(fragUV.x * 10.0 + u_time * 2.0) * cos(fragUV.y * 10.0 + u_time * 1.5);
-    displacement += vec2(wave, wave) * 0.002;
+    // Refraction strength (strong at edges, zero at center)
+    // 0.12 = refraction stays very close to edges
+    float edgeFactor = 1.0 - smoothstep(0.0, 0.12, edgeDist);
 
-    // Apply displacement to background UV
-    vec2 displacedUV = bgUV + displacement;
+    // Direction from fragment to center
+    vec2 toCenter = vec2(0.5) - fragUV;
+    vec2 refractionOffset = normalize(toCenter) * edgeFactor * u_refractionStrength * 0.015;
 
-    // Chromatic aberration - sample RGB channels with different offsets
+    // Apply refraction to background UV
+    vec2 refractedUV = clamp(bgUV + refractionOffset, 0.0, 1.0);
+
+    // Chromatic aberration - sample RGB channels with slight offsets (no blur - CSS handles that)
     float aberration = u_aberrationIntensity * 0.003;
-    vec2 aberrationDir = normalize(toMouse + 0.001) * aberration * mouseInfluence;
+    vec2 aberrationDir = vec2(aberration, 0.0);
 
-    vec2 texelSize = 1.0 / u_bgSize;
-    float blurRadius = u_blurAmount * 20.0;
-
-    // Sample with chromatic aberration
-    float r = blur(u_background, displacedUV + aberrationDir * 1.0, texelSize, blurRadius).r;
-    float g = blur(u_background, displacedUV, texelSize, blurRadius).g;
-    float b = blur(u_background, displacedUV - aberrationDir * 1.0, texelSize, blurRadius).b;
+    float r = texture2D(u_background, refractedUV + aberrationDir).r;
+    float g = texture2D(u_background, refractedUV).g;
+    float b = texture2D(u_background, refractedUV - aberrationDir).b;
 
     vec3 color = vec3(r, g, b);
 
@@ -110,14 +85,6 @@ export const fragmentShader = `
 
     // Add subtle glass tint
     color = mix(color, color * vec3(1.02, 1.01, 1.03), 0.3);
-
-    // Add subtle specular highlight near mouse
-    float specular = pow(mouseInfluence, 3.0) * 0.15;
-    color += vec3(specular);
-
-    // Add edge highlight for glass effect
-    float edge = 1.0 - smoothstep(0.0, 0.05, min(min(fragUV.x, 1.0 - fragUV.x), min(fragUV.y, 1.0 - fragUV.y)));
-    color += vec3(edge * 0.1);
 
     gl_FragColor = vec4(color, 1.0);
   }
