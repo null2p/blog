@@ -120,16 +120,38 @@ export function WebGLLiquidGlassCard({
         {children}
       </div>
 
-      {/* 3D Bezel effect - macOS liquid-glass style */}
+      {/* Thin 3D bezel - macOS liquid glass style */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          inset: -1,
+          borderRadius: cornerRadius + 1,
+          background: `linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0.8) 15%,
+            rgba(255, 255, 255, 0.3) 40%,
+            transparent 55%,
+            rgba(0, 0, 0, 0.2) 75%,
+            rgba(0, 0, 0, 0.5) 100%
+          )`,
+          WebkitMask: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
+          WebkitMaskComposite: 'xor',
+          maskComposite: 'exclude',
+          padding: 1,
+        }}
+      />
+      {/* Inner glow for convex effect */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           borderRadius: cornerRadius,
-          borderTop: '1px solid rgba(255, 255, 255, 0.35)',
-          borderLeft: '1px solid rgba(255, 255, 255, 0.25)',
-          borderBottom: '1px solid rgba(0, 0, 0, 0.25)',
-          borderRight: '1px solid rgba(0, 0, 0, 0.15)',
-          boxShadow: 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.1)',
+          boxShadow: `
+            inset 0 1px 1px 0 rgba(255, 255, 255, 0.5),
+            inset 1px 0 1px 0 rgba(255, 255, 255, 0.3),
+            inset 0 -1px 1px 0 rgba(255, 255, 255, 0.15),
+            inset -1px 0 1px 0 rgba(255, 255, 255, 0.1)
+          `,
         }}
       />
     </div>
