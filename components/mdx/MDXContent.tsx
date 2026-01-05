@@ -9,33 +9,57 @@ interface MDXContentProps {
   source: string;
 }
 
-// MDX 컴포넌트 정의
+// MDX components - Warm Editorial Codex style
 const components = {
   h1: (props: any) => (
-    <h1 className="text-4xl font-bold text-white mt-8 mb-4" {...props} />
+    <h1
+      className="text-4xl font-display mt-8 mb-4"
+      style={{ color: 'var(--text)', fontWeight: 900 }}
+      {...props}
+    />
   ),
   h2: (props: any) => (
-    <h2 className="text-3xl font-bold text-white mt-6 mb-3" {...props} />
+    <h2
+      className="text-3xl font-display mt-6 mb-3"
+      style={{ color: 'var(--text)', fontWeight: 900 }}
+      {...props}
+    />
   ),
   h3: (props: any) => (
-    <h3 className="text-2xl font-bold text-white mt-4 mb-2" {...props} />
+    <h3
+      className="text-2xl font-display mt-4 mb-2"
+      style={{ color: 'var(--text)', fontWeight: 400 }}
+      {...props}
+    />
   ),
   p: (props: any) => (
-    <div className="text-white/80 leading-7 mb-4" {...props} />
+    <div
+      className="leading-7 mb-4"
+      style={{ color: 'var(--text)' }}
+      {...props}
+    />
   ),
   a: (props: any) => (
     <a
-      className="text-blue-400 hover:text-blue-300 underline transition"
+      className="ink-link underline transition"
       target={props.href?.startsWith('http') ? '_blank' : undefined}
       rel={props.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
       {...props}
     />
   ),
   ul: (props: any) => (
-    <ul className="list-disc list-inside text-white/80 mb-4 space-y-2" {...props} />
+    <ul
+      className="list-disc list-inside mb-4 space-y-2"
+      style={{ color: 'var(--text)' }}
+      {...props}
+    />
   ),
   ol: (props: any) => (
-    <ol className="list-decimal list-inside text-white/80 mb-4 space-y-2" {...props} />
+    <ol
+      className="list-decimal list-inside mb-4 space-y-2"
+      style={{ color: 'var(--text)' }}
+      {...props}
+    />
   ),
   li: (props: any) => (
     <li className="ml-4" {...props} />
@@ -47,7 +71,11 @@ const components = {
     if (isInline) {
       return (
         <code
-          className="px-1.5 py-0.5 bg-white/10 rounded text-sm text-pink-300 font-mono text-shadow-lg"
+          className="px-1.5 py-0.5 rounded text-sm font-mono"
+          style={{
+            background: 'var(--surface-2)',
+            color: 'var(--accent)',
+          }}
           {...rest}
         >
           {children}
@@ -55,7 +83,7 @@ const components = {
       );
     }
 
-    // 코드 블록 내 code - highlight.js 스타일 유지
+    // Code block - highlight.js styles preserved
     return (
       <code className={`${className} !bg-transparent`} {...rest}>
         {children}
@@ -64,26 +92,60 @@ const components = {
   },
   pre: (props: any) => (
     <pre
-      className="p-4 mb-4 overflow-x-auto rounded-xl bg-black/40 backdrop-blur-md border border-white/10"
+      className="p-4 mb-4 overflow-x-auto rounded-xl"
+      style={{
+        background: 'var(--surface-2)',
+        border: '1px solid var(--border)',
+      }}
       {...props}
     />
   ),
   blockquote: (props: any) => (
-    <blockquote className="border-l-4 border-purple-500 pl-4 py-2 my-4 bg-white/5 rounded-r-lg text-white/80 italic" {...props} />
+    <blockquote
+      className="pl-4 py-2 my-4 rounded-r-lg italic"
+      style={{
+        borderLeft: '4px solid var(--accent)',
+        background: 'rgba(197, 106, 43, 0.05)',
+        color: 'var(--text)',
+      }}
+      {...props}
+    />
   ),
   hr: () => (
-    <hr className="my-8 border-white/10" />
+    <hr
+      className="my-8"
+      style={{ borderColor: 'var(--border)' }}
+    />
   ),
   table: (props: any) => (
     <div className="overflow-x-auto mb-4">
-      <table className="min-w-full border border-white/10" {...props} />
+      <table
+        className="min-w-full"
+        style={{ border: '1px solid var(--border)' }}
+        {...props}
+      />
     </div>
   ),
   th: (props: any) => (
-    <th className="border border-white/10 px-4 py-2 bg-white/5 text-white font-semibold" {...props} />
+    <th
+      className="px-4 py-2 font-semibold"
+      style={{
+        border: '1px solid var(--border)',
+        background: 'var(--surface-2)',
+        color: 'var(--text)',
+      }}
+      {...props}
+    />
   ),
   td: (props: any) => (
-    <td className="border border-white/10 px-4 py-2 text-white/80" {...props} />
+    <td
+      className="px-4 py-2"
+      style={{
+        border: '1px solid var(--border)',
+        color: 'var(--text)',
+      }}
+      {...props}
+    />
   ),
   LiquidGlassCard,
   LiquidGlassButton,
@@ -92,7 +154,7 @@ const components = {
 
 export function MDXContent({ source }: MDXContentProps) {
   return (
-    <div className="prose prose-invert max-w-none">
+    <div className="prose max-w-none">
       <MDXRemote
         source={source}
         components={components}

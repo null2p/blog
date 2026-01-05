@@ -1,5 +1,4 @@
 import { getAllTags, getPostsByTag } from '@/lib/content';
-import { LiquidGlassCard } from '@/components/ui/LiquidGlassCard';
 import Link from 'next/link';
 
 export const metadata = {
@@ -13,8 +12,22 @@ export default function TagsPage() {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h1 className="text-5xl font-display font-bold text-white mb-4 tracking-tight">All Tags</h1>
-        <p className="text-xl text-white/70 font-body font-light">
+        <p
+          className="text-sm uppercase tracking-widest mb-2"
+          style={{ color: 'var(--muted)' }}
+        >
+          Topics
+        </p>
+        <h1
+          className="text-5xl font-display mb-4 tracking-tight"
+          style={{ color: 'var(--text)', fontWeight: 900 }}
+        >
+          All Tags
+        </h1>
+        <p
+          className="text-xl font-body"
+          style={{ color: 'var(--muted)' }}
+        >
           Browse posts by topic
         </p>
       </div>
@@ -25,23 +38,30 @@ export default function TagsPage() {
             const postCount = getPostsByTag(tag).length;
             return (
               <Link key={tag} href={`/tags/${tag}`}>
-                <LiquidGlassCard className="hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
-                  <div className="text-center py-8">
-                    <h2 className="text-3xl font-display font-bold text-purple-400 mb-2 tracking-tight">
-                      #{tag}
-                    </h2>
-                    <p className="text-white/60">
-                      {postCount} {postCount === 1 ? 'post' : 'posts'}
-                    </p>
-                  </div>
-                </LiquidGlassCard>
+                <article className="paper-card p-8 text-center cursor-pointer">
+                  <h2
+                    className="text-3xl font-display mb-2 tracking-tight"
+                    style={{ color: 'var(--accent)', fontWeight: 900 }}
+                  >
+                    #{tag}
+                  </h2>
+                  <p style={{ color: 'var(--muted)' }}>
+                    {postCount} {postCount === 1 ? 'post' : 'posts'}
+                  </p>
+                </article>
               </Link>
             );
           })}
         </div>
       ) : (
-        <div className="text-center py-20">
-          <p className="text-white/60 text-lg">
+        <div
+          className="text-center py-20 paper-surface"
+          style={{ borderRadius: '12px' }}
+        >
+          <p
+            className="text-lg"
+            style={{ color: 'var(--muted)' }}
+          >
             No tags yet.
           </p>
         </div>

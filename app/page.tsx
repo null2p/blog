@@ -1,37 +1,80 @@
 import { getFeaturedPosts } from '@/lib/content';
 import { PostCard } from '@/components/ui/PostCard';
-import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton';
+import Link from 'next/link';
 
 export default function HomePage() {
   const featuredPosts = getFeaturedPosts(3);
 
   return (
     <div className="space-y-16">
-      {/* Hero Section */}
-      <section className="text-center py-20">
-        <h1 className="text-6xl md:text-7xl font-display font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent tracking-tight">
+      {/* Hero Section - Warm Editorial Style */}
+      <section className="text-center py-20 animate-fade-in-up">
+        <p
+          className="text-sm uppercase tracking-widest mb-4 delay-1 animate-fade-in-up"
+          style={{ color: 'var(--muted)' }}
+        >
+          Personal Blog
+        </p>
+        <h1
+          className="text-5xl md:text-7xl font-display mb-6 tracking-tight delay-2 animate-fade-in-up"
+          style={{ color: 'var(--text)', fontWeight: 900 }}
+        >
           Welcome to My Blog
         </h1>
-        <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto font-body font-light leading-relaxed">
-          Exploring technology, design, and everything in between with a touch of Liquid Glass
+        <p
+          className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto font-body leading-relaxed delay-3 animate-fade-in-up"
+          style={{ color: 'var(--muted)' }}
+        >
+          Exploring technology, design, and everything in between
         </p>
-        <div className="flex gap-4 justify-center">
-          <LiquidGlassButton href="/posts" variant="primary">
+        <div className="flex gap-4 justify-center delay-4 animate-fade-in-up">
+          <Link
+            href="/posts"
+            className="px-6 py-3 rounded-lg font-medium transition"
+            style={{
+              background: 'var(--accent)',
+              color: 'var(--surface)',
+            }}
+          >
             Read Articles
-          </LiquidGlassButton>
-          <LiquidGlassButton href="/about" variant="secondary">
+          </Link>
+          <Link
+            href="/about"
+            className="px-6 py-3 rounded-lg font-medium transition"
+            style={{
+              background: 'var(--surface)',
+              color: 'var(--text)',
+              border: '1px solid var(--border)',
+            }}
+          >
             About Me
-          </LiquidGlassButton>
+          </Link>
         </div>
       </section>
+
+      {/* Decorative Ornament */}
+      <div className="flex justify-center">
+        <div
+          className="w-24 h-px"
+          style={{ background: 'var(--border)' }}
+        />
+      </div>
 
       {/* Featured Posts */}
       <section>
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-4xl font-display font-bold text-white tracking-tight">Featured Posts</h2>
-          <LiquidGlassButton href="/posts" variant="secondary">
+          <h2
+            className="text-4xl font-display tracking-tight"
+            style={{ color: 'var(--text)', fontWeight: 900 }}
+          >
+            Featured Posts
+          </h2>
+          <Link
+            href="/posts"
+            className="ink-link font-medium"
+          >
             View All
-          </LiquidGlassButton>
+          </Link>
         </div>
 
         {featuredPosts.length > 0 ? (
@@ -41,8 +84,14 @@ export default function HomePage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20">
-            <p className="text-white/60 text-lg">
+          <div
+            className="text-center py-20 paper-surface"
+            style={{ borderRadius: '12px' }}
+          >
+            <p
+              className="text-lg"
+              style={{ color: 'var(--muted)' }}
+            >
               No posts yet. Start writing your first post!
             </p>
           </div>

@@ -1,6 +1,5 @@
 import { getAllPostSlugs, getPostBySlug } from '@/lib/content';
 import { MDXContent } from '@/components/mdx/MDXContent';
-import { LiquidGlassCard } from '@/components/ui/LiquidGlassCard';
 import Link from 'next/link';
 
 export async function generateStaticParams() {
@@ -34,18 +33,36 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <article className="max-w-4xl mx-auto">
-      {/* Post Header */}
-      <LiquidGlassCard className="mb-8">
+      {/* Post Header - Paper Surface */}
+      <header
+        className="paper-surface p-8 mb-8 animate-fade-in-up"
+        style={{ borderRadius: '16px' }}
+      >
         <div className="space-y-4">
-          <h1 className="text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
+          <p
+            className="text-sm uppercase tracking-widest"
+            style={{ color: 'var(--muted)' }}
+          >
+            Article
+          </p>
+          <h1
+            className="text-4xl md:text-5xl font-display tracking-tight delay-1 animate-fade-in-up"
+            style={{ color: 'var(--text)', fontWeight: 900 }}
+          >
             {title}
           </h1>
 
-          <p className="text-xl text-white/70 font-body font-light leading-relaxed">
+          <p
+            className="text-xl font-body leading-relaxed delay-2 animate-fade-in-up"
+            style={{ color: 'var(--muted)' }}
+          >
             {description}
           </p>
 
-          <div className="flex items-center gap-4 text-sm text-white/60">
+          <div
+            className="flex items-center gap-4 text-sm delay-3 animate-fade-in-up"
+            style={{ color: 'var(--muted)' }}
+          >
             <time dateTime={date}>
               {new Date(date).toLocaleDateString('ko-KR', {
                 year: 'numeric',
@@ -53,17 +70,21 @@ export default async function PostPage({ params }: PostPageProps) {
                 day: 'numeric',
               })}
             </time>
-            <span>•</span>
+            <span style={{ color: 'var(--border)' }}>|</span>
             <span>{post.readingTime}</span>
           </div>
 
           {tags && tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 pt-2">
+            <div className="flex flex-wrap gap-2 pt-2 delay-4 animate-fade-in-up">
               {tags.map((tag) => (
                 <Link
                   key={tag}
                   href={`/tags/${tag}`}
-                  className="px-3 py-1 text-xs font-medium bg-white/10 rounded-full text-white/80 hover:bg-white/20 transition"
+                  className="px-3 py-1 text-xs font-medium rounded-full transition"
+                  style={{
+                    background: 'var(--surface-2)',
+                    color: 'var(--accent)',
+                  }}
                 >
                   #{tag}
                 </Link>
@@ -71,18 +92,12 @@ export default async function PostPage({ params }: PostPageProps) {
             </div>
           )}
         </div>
-      </LiquidGlassCard>
+      </header>
 
-      {/* Post Content - CSS-based glass effect (no WebGL for performance) */}
+      {/* Post Content - Solid Paper Surface */}
       <div
-        className="p-6 rounded-[50px] bg-black/20 backdrop-blur-md border border-white/10"
-        style={{
-          borderTop: '1px solid rgba(255, 255, 255, 0.35)',
-          borderLeft: '1px solid rgba(255, 255, 255, 0.25)',
-          borderBottom: '1px solid rgba(0, 0, 0, 0.25)',
-          borderRight: '1px solid rgba(0, 0, 0, 0.15)',
-          boxShadow: 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.1)',
-        }}
+        className="paper-surface p-8"
+        style={{ borderRadius: '16px' }}
       >
         <MDXContent source={post.content} />
       </div>

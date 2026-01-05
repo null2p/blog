@@ -23,8 +23,9 @@ export interface WebGLLiquidGlassCardProps {
   style?: CSSProperties;
 }
 
-// Background image path - should match globals.css
-const BG_IMAGE = '/images/space-bg.jpg';
+// Background - warm paper color for glass effect
+// Uses a data URL with warm vellum color since we no longer have space-bg
+const BG_IMAGE = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23F6F0E6" width="100" height="100"/%3E%3C/svg%3E';
 
 export function WebGLLiquidGlassCard({
   children,
@@ -114,13 +115,23 @@ export function WebGLLiquidGlassCard({
 
       {/* Content overlay */}
       <div
-        className="absolute inset-0 text-shadow-lg"
+        className="absolute inset-0"
         style={{ padding }}
       >
         {children}
       </div>
 
-      {/* Thin 3D bezel - macOS liquid glass style */}
+      {/* Warm glass overlay tint */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          borderRadius: cornerRadius,
+          background: 'rgba(255, 248, 239, 0.4)',
+          mixBlendMode: 'overlay',
+        }}
+      />
+
+      {/* Thin 3D bezel - warm amber tint */}
       <div
         className="absolute pointer-events-none"
         style={{
@@ -128,12 +139,12 @@ export function WebGLLiquidGlassCard({
           borderRadius: cornerRadius + 1,
           background: `linear-gradient(
             145deg,
-            rgba(255, 255, 255, 1) 0%,
-            rgba(255, 255, 255, 0.8) 15%,
-            rgba(255, 255, 255, 0.3) 40%,
+            rgba(255, 248, 230, 0.9) 0%,
+            rgba(255, 248, 230, 0.6) 15%,
+            rgba(255, 248, 230, 0.2) 40%,
             transparent 55%,
-            rgba(0, 0, 0, 0.2) 75%,
-            rgba(0, 0, 0, 0.5) 100%
+            rgba(28, 26, 22, 0.1) 75%,
+            rgba(28, 26, 22, 0.2) 100%
           )`,
           WebkitMask: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
           WebkitMaskComposite: 'xor',
@@ -141,16 +152,16 @@ export function WebGLLiquidGlassCard({
           padding: 1,
         }}
       />
-      {/* Inner glow for convex effect */}
+      {/* Inner glow for convex effect - warm tint */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           borderRadius: cornerRadius,
           boxShadow: `
-            inset 0 1px 1px 0 rgba(255, 255, 255, 0.5),
-            inset 1px 0 1px 0 rgba(255, 255, 255, 0.3),
-            inset 0 -1px 1px 0 rgba(255, 255, 255, 0.15),
-            inset -1px 0 1px 0 rgba(255, 255, 255, 0.1)
+            inset 0 1px 1px 0 rgba(255, 248, 230, 0.6),
+            inset 1px 0 1px 0 rgba(255, 248, 230, 0.4),
+            inset 0 -1px 1px 0 rgba(255, 248, 230, 0.2),
+            inset -1px 0 1px 0 rgba(255, 248, 230, 0.15)
           `,
         }}
       />

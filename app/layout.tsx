@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Newsreader, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Crimson_Pro, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteConfig } from "@/lib/config/site";
 
-const spaceGrotesk = Space_Grotesk({
+const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["300", "700"],
+  weight: ["200", "400", "900"],
 });
 
-const newsreader = Newsreader({
+const crimsonPro = Crimson_Pro({
   subsets: ["latin"],
   variable: "--font-body",
-  weight: ["200", "400", "600"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
 });
 
@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className={`${spaceGrotesk.variable} ${newsreader.variable} ${jetbrainsMono.variable} antialiased`}>
+      <body className={`${fraunces.variable} ${crimsonPro.variable} ${jetbrainsMono.variable} antialiased`}>
         <Header />
         <main className="relative z-10 pt-24 px-4 min-h-screen">
           <div className="max-w-6xl mx-auto">

@@ -25,7 +25,7 @@ interface WebGLRendererState {
 }
 
 export function useWebGLRenderer(
-  canvasRef: RefObject<HTMLCanvasElement>,
+  canvasRef: RefObject<HTMLCanvasElement | null>,
   backgroundImageSrc: string,
   options: UseWebGLRendererOptions
 ) {

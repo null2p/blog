@@ -11,9 +11,7 @@ export interface WebGLLiquidGlassButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   variant?: 'primary' | 'secondary';
-  displacementScale?: number;
   blurAmount?: number;
-  elasticity?: number;
   saturation?: number;
   aberrationIntensity?: number;
   cornerRadius?: number;
@@ -27,30 +25,31 @@ export function WebGLLiquidGlassButton({
   onClick,
   disabled = false,
   variant = 'primary',
-  displacementScale = 40,
   blurAmount = 0.05,
-  elasticity = 0.2,
   saturation = 130,
   aberrationIntensity = 1.5,
   cornerRadius = 100,
   style,
 }: WebGLLiquidGlassButtonProps) {
   const variantStyles = variant === 'primary'
-    ? 'text-white'
-    : 'text-white/80';
+    ? ''
+    : '';
 
   const content = (
     <WebGLLiquidGlassCard
-      displacementScale={displacementScale}
       blurAmount={blurAmount}
-      elasticity={elasticity}
       saturation={saturation}
       aberrationIntensity={aberrationIntensity}
       cornerRadius={cornerRadius}
       noPadding={true}
       style={{ padding: '12px 24px' }}
     >
-      <span className={`font-display font-semibold whitespace-nowrap ${variantStyles}`}>{children}</span>
+      <span
+        className={`font-display font-semibold whitespace-nowrap ${variantStyles}`}
+        style={{ color: 'var(--text)' }}
+      >
+        {children}
+      </span>
     </WebGLLiquidGlassCard>
   );
 

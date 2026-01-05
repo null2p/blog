@@ -1,51 +1,113 @@
 @import "tailwindcss";
-@import 'highlight.js/styles/github-dark.css';
+@import 'highlight.js/styles/github.css';
+
+/* ============================================
+   Warm Editorial Codex - Design System
+   ============================================ */
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  /* Background & Surfaces */
+  --bg: #F6F0E6;
+  --surface: #FFF8EF;
+  --surface-2: #F1E7D8;
+
+  /* Text Colors */
+  --text: #1C1A16;
+  --muted: #5D564C;
+
+  /* Borders & Separators */
+  --border: rgba(28, 26, 22, 0.12);
+
+  /* Accents */
+  --accent: #C56A2B;
+  --accent-2: #2A6F6A;
+  --link: #B84E1B;
+  --focus: #2A6F6A;
+
+  /* Shadows */
+  --shadow: 0 10px 30px rgba(28, 26, 22, 0.10);
+  --shadow-sm: 0 2px 8px rgba(28, 26, 22, 0.06);
+
+  /* Glass (warm tint) */
+  --glass-bg: rgba(255, 248, 239, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.25);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-link: var(--link);
+  --color-border: var(--border);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
   --font-mono: var(--font-mono);
 }
 
+/* ============================================
+   Base Styles - Hybrid Layer System
+   ============================================ */
+
 body {
-  background: url('/images/space-bg.jpg') no-repeat center center fixed;
-  background-size: cover;
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse at 70% 20%, rgba(197, 106, 43, 0.05) 0%, transparent 50%),
+    linear-gradient(to right, transparent 0%, var(--bg) 5%, var(--bg) 95%, transparent 100%);
   min-height: 100vh;
-  color: var(--foreground);
-  font-family: var(--font-body), Georgia, serif;
+  color: var(--text);
+  font-family: var(--font-body), Georgia, 'Times New Roman', serif;
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.75;
   letter-spacing: 0.01em;
   position: relative;
   overflow-x: hidden;
 }
 
-/* Typography - Display font for headings */
+/* Layer 2: Paper Grain (very subtle) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   Typography - Fraunces + Crimson Pro
+   ============================================ */
+
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-weight: 700;
+  font-family: var(--font-display), Georgia, serif;
   letter-spacing: -0.02em;
   line-height: 1.2;
+  color: var(--text);
 }
 
 h1 {
   font-size: 3.5rem;
-  font-weight: 700;
+  font-weight: 900;
 }
 
 h2 {
   font-size: 2.25rem;
+  font-weight: 900;
 }
 
 h3 {
   font-size: 1.5rem;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
 /* Code typography */
@@ -63,64 +125,165 @@ code {
   font-weight: 400;
 }
 
-/* Light weight for subtle text */
-.font-light {
-  font-weight: 200;
-}
-
-/* Display font utility */
+/* Font utilities */
 .font-display {
-  font-family: var(--font-display), system-ui, sans-serif;
+  font-family: var(--font-display), Georgia, serif;
 }
 
-/* Body font utility */
 .font-body {
   font-family: var(--font-body), Georgia, serif;
 }
 
-/* Mono font utility */
 .font-mono {
   font-family: var(--font-mono), 'Courier New', monospace;
 }
 
-/* Dark overlay for better text readability */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
-  pointer-events: none;
-  z-index: 0;
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+/* Paper Surface - main content background */
+.paper-surface {
+  background: var(--surface);
+  position: relative;
+  z-index: 1;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
 }
 
-/* 글로벌 스크롤바 스타일 */
+/* Paper Card - for card components */
+.paper-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.paper-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+/* Glass Panel - for allowed glass elements only */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(6px) saturate(1.2);
+  -webkit-backdrop-filter: blur(6px) saturate(1.2);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Marginalia - annotation text */
+.marginalia {
+  font-size: 0.875rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ============================================
+   Scrollbar Styles
+   ============================================ */
+
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--surface-2);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(28, 26, 22, 0.2);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(28, 26, 22, 0.3);
 }
 
-/* Text shadow utilities for LiquidGlass */
-.text-shadow-lg {
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6), 0 8px 24px rgba(0, 0, 0, 0.4);
+/* ============================================
+   Link Styles
+   ============================================ */
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-/* LiquidGlass card wrapper - creates a container that takes full space
-   while allowing the absolute-positioned LiquidGlass to render inside */
+a:hover {
+  color: var(--accent);
+}
+
+/* Ink-like underline animation */
+.ink-link {
+  position: relative;
+  color: var(--link);
+}
+
+.ink-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.ink-link:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   Focus States
+   ============================================ */
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Motion & Animations
+   ============================================ */
+
+/* Staggered reveal animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   Legacy LiquidGlass Wrappers (for WebGL)
+   ============================================ */
+
 .liquid-glass-card {
   position: relative;
   width: 100%;
@@ -130,13 +293,11 @@ body::before {
   justify-content: center;
 }
 
-/* LiquidGlass button wrapper - fixed size container for buttons */
 .liquid-glass-button {
   min-width: 140px;
   min-height: 48px;
 }
 
-/* LiquidGlass panel wrapper - for inline MDX content */
 .liquid-glass-panel {
   position: relative;
   display: block;
@@ -144,7 +305,6 @@ body::before {
   min-height: 80px;
 }
 
-/* LiquidGlass card wrapper in MDX context - needs explicit height */
 .prose .liquid-glass-card,
 .prose .liquid-glass-panel {
   min-height: 100px;

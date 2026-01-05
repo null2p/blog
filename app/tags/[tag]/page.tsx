@@ -29,10 +29,22 @@ export default async function TagPage({ params }: TagPageProps) {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h1 className="text-5xl font-display font-bold text-white mb-4 tracking-tight">
-          <span className="text-purple-400">#{tag}</span>
+        <p
+          className="text-sm uppercase tracking-widest mb-2"
+          style={{ color: 'var(--muted)' }}
+        >
+          Tagged
+        </p>
+        <h1
+          className="text-5xl font-display mb-4 tracking-tight"
+          style={{ color: 'var(--accent)', fontWeight: 900 }}
+        >
+          #{tag}
         </h1>
-        <p className="text-xl text-white/70 font-body font-light">
+        <p
+          className="text-xl font-body"
+          style={{ color: 'var(--muted)' }}
+        >
           {posts.length} {posts.length === 1 ? 'post' : 'posts'} tagged with {tag}
         </p>
       </div>
@@ -44,8 +56,14 @@ export default async function TagPage({ params }: TagPageProps) {
           ))}
         </div>
       ) : (
-        <div className="text-center py-20">
-          <p className="text-white/60 text-lg">
+        <div
+          className="text-center py-20 paper-surface"
+          style={{ borderRadius: '12px' }}
+        >
+          <p
+            className="text-lg"
+            style={{ color: 'var(--muted)' }}
+          >
             No posts found with this tag.
           </p>
         </div>
