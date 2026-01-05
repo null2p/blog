@@ -30,7 +30,7 @@ export default function HomePage() {
         <div className="flex gap-4 justify-center delay-4 animate-fade-in-up">
           <Link
             href="/posts"
-            className="px-6 py-3 rounded-lg font-medium transition"
+            className="px-6 py-3 rounded-xl font-medium transition"
             style={{
               background: 'var(--accent)',
               color: 'var(--surface)',
@@ -40,7 +40,7 @@ export default function HomePage() {
           </Link>
           <Link
             href="/about"
-            className="px-6 py-3 rounded-lg font-medium transition"
+            className="px-6 py-3 rounded-xl font-medium transition"
             style={{
               background: 'var(--surface)',
               color: 'var(--text)',
@@ -84,10 +84,7 @@ export default function HomePage() {
             ))}
           </div>
         ) : (
-          <div
-            className="text-center py-20 paper-surface"
-            style={{ borderRadius: '12px' }}
-          >
+          <div className="text-center py-20 paper-surface">
             <p
               className="text-lg"
               style={{ color: 'var(--muted)' }}

@@ -39,10 +39,7 @@ export default function PostsPage() {
           ))}
         </div>
       ) : (
-        <div
-          className="text-center py-20 paper-surface"
-          style={{ borderRadius: '12px' }}
-        >
+        <div className="text-center py-20 paper-surface">
           <p
             className="text-lg"
             style={{ color: 'var(--muted)' }}

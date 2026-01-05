@@ -71,7 +71,7 @@ const components = {
     if (isInline) {
       return (
         <code
-          className="px-1.5 py-0.5 rounded text-sm font-mono"
+          className="px-1.5 py-0.5 rounded-lg text-sm font-mono"
           style={{
             background: 'var(--surface-2)',
             color: 'var(--accent)',
@@ -92,7 +92,7 @@ const components = {
   },
   pre: (props: any) => (
     <pre
-      className="p-4 mb-4 overflow-x-auto rounded-xl"
+      className="p-4 mb-4 overflow-x-auto rounded-2xl"
       style={{
         background: 'var(--surface-2)',
         border: '1px solid var(--border)',
@@ -102,7 +102,7 @@ const components = {
   ),
   blockquote: (props: any) => (
     <blockquote
-      className="pl-4 py-2 my-4 rounded-r-lg italic"
+      className="pl-4 py-2 my-4 rounded-r-2xl italic"
       style={{
         borderLeft: '4px solid var(--accent)',
         background: 'rgba(197, 106, 43, 0.05)',

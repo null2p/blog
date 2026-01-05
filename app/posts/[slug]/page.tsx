@@ -34,10 +34,7 @@ export default async function PostPage({ params }: PostPageProps) {
   return (
     <article className="max-w-4xl mx-auto">
       {/* Post Header - Paper Surface */}
-      <header
-        className="paper-surface p-8 mb-8 animate-fade-in-up"
-        style={{ borderRadius: '16px' }}
-      >
+      <header className="paper-surface p-8 mb-8 animate-fade-in-up">
         <div className="space-y-4">
           <p
             className="text-sm uppercase tracking-widest"
@@ -95,10 +92,7 @@ export default async function PostPage({ params }: PostPageProps) {
       </header>
 
       {/* Post Content - Solid Paper Surface */}
-      <div
-        className="paper-surface p-8"
-        style={{ borderRadius: '16px' }}
-      >
+      <div className="paper-surface p-8">
         <MDXContent source={post.content} />
       </div>
     </article>

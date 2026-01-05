@@ -29,10 +29,7 @@ export default function AboutPage() {
         </p>
       </div>
 
-      <div
-        className="paper-surface p-8"
-        style={{ borderRadius: '16px' }}
-      >
+      <div className="paper-surface p-8">
         <div className="prose max-w-none space-y-6">
           <h2
             className="text-3xl font-display tracking-tight"
@@ -129,7 +126,7 @@ export default function AboutPage() {
           </div>
 
           <div
-            className="mt-8 p-4 rounded-lg"
+            className="mt-8 p-4 rounded-xl"
             style={{
               background: 'var(--surface-2)',
               border: '1px solid var(--border)',
