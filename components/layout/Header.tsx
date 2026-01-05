@@ -51,7 +51,7 @@ export function Header() {
         <nav className="flex items-center justify-between">
           <Link
             href="/"
-            className="text-2xl font-display font-bold transition tracking-tight"
+            className="hidden md:block text-2xl font-display font-bold transition tracking-tight"
             style={{ color: 'var(--text)' }}
           >
             {siteConfig.name}
