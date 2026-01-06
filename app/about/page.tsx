@@ -1,4 +1,5 @@
 import { siteConfig } from '@/lib/config/site';
+import { layoutConfig } from '@/lib/config/layout';
 
 export const metadata = {
   title: 'About | My Blog',
@@ -7,7 +8,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className={`${layoutConfig.container} space-y-8`}>
       <div className="text-center">
         <p
           className="text-sm uppercase tracking-widest mb-2"

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { siteConfig } from '@/lib/config/site';
+import { layoutConfig } from '@/lib/config/layout';
 import { LiquidGlassPanel } from '@/components/ui/LiquidGlassPanel';
 
 export function Header() {
@@ -47,7 +48,7 @@ export function Header() {
         transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
       }}
     >
-      <LiquidGlassPanel className="max-w-6xl mx-auto">
+      <LiquidGlassPanel className={layoutConfig.container}>
         <nav className="flex items-center justify-between">
           <Link
             href="/"

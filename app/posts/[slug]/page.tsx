@@ -1,5 +1,6 @@
 import { getAllPostSlugs, getPostBySlug } from '@/lib/content';
 import { MDXContent } from '@/components/mdx/MDXContent';
+import { layoutConfig } from '@/lib/config/layout';
 import Link from 'next/link';
 
 export async function generateStaticParams() {
@@ -32,7 +33,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const { title, date, tags, description } = post.frontmatter;
 
   return (
-    <article className="max-w-4xl mx-auto">
+    <article className={layoutConfig.container}>
       {/* Post Header - Paper Surface */}
       <header className="paper-surface p-8 mb-8 animate-fade-in-up">
         <div className="space-y-4">

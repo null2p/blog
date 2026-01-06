@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteConfig } from "@/lib/config/site";
+import { layoutConfig } from "@/lib/config/layout";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -38,8 +39,8 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning>
       <body className={`${fraunces.variable} ${crimsonPro.variable} ${jetbrainsMono.variable} antialiased`}>
         <Header />
-        <main className="relative z-10 pt-24 px-4 min-h-screen">
-          <div className="max-w-6xl mx-auto">
+        <main className={`relative z-10 pt-24 ${layoutConfig.padding.page} min-h-screen`}>
+          <div className={layoutConfig.container}>
             {children}
           </div>
         </main>
