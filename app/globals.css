@@ -1,6 +1,15 @@
 @import "tailwindcss";
 @import 'highlight.js/styles/github.css';
 
+/* RIDIBatang Korean Font */
+@font-face {
+  font-family: 'RIDIBatang';
+  src: url('/fonts/RIDIBatang.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ============================================
    Warm Editorial Codex - Design System
    ============================================ */
@@ -38,6 +47,14 @@
   /* Glass (warm tint) */
   --glass-bg: rgba(255, 248, 239, 0.65);
   --glass-border: rgba(255, 255, 255, 0.25);
+
+  /* Typography - Korean font (change this ONE variable to switch Korean font) */
+  --font-korean: 'RIDIBatang';
+
+  /* Font stacks (uses --font-display, --font-body, --font-mono from Next.js) */
+  --font-stack-display: var(--font-display), var(--font-korean), Georgia, serif;
+  --font-stack-body: var(--font-body), var(--font-korean), Georgia, serif;
+  --font-stack-mono: var(--font-mono), 'Courier New', monospace;
 }
 
 @theme inline {
@@ -50,9 +67,9 @@
   --color-accent-2: var(--accent-2);
   --color-link: var(--link);
   --color-border: var(--border);
-  --font-display: var(--font-display);
-  --font-body: var(--font-body);
-  --font-mono: var(--font-mono);
+  --font-display: var(--font-stack-display);
+  --font-body: var(--font-stack-body);
+  --font-mono: var(--font-stack-mono);
 }
 
 /* ============================================
@@ -66,7 +83,7 @@ body {
     linear-gradient(to right, transparent 0%, var(--bg) 5%, var(--bg) 95%, transparent 100%);
   min-height: 100vh;
   color: var(--text);
-  font-family: var(--font-body), Georgia, 'Times New Roman', serif;
+  font-family: var(--font-stack-body);
   font-weight: 400;
   line-height: 1.75;
   letter-spacing: 0.01em;
@@ -91,10 +108,15 @@ body::before {
    ============================================ */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-stack-display);
   letter-spacing: -0.02em;
   line-height: 1.2;
   color: var(--text);
+}
+
+/* Korean typography */
+:lang(ko) {
+  word-break: keep-all;
 }
 
 h1 {
@@ -119,7 +141,7 @@ h4 {
 
 /* Code typography */
 code, pre, kbd, samp {
-  font-family: var(--font-mono), 'Courier New', monospace;
+  font-family: var(--font-stack-mono);
 }
 
 pre {
@@ -134,15 +156,15 @@ code {
 
 /* Font utilities */
 .font-display {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-stack-display);
 }
 
 .font-body {
-  font-family: var(--font-body), Georgia, serif;
+  font-family: var(--font-stack-body);
 }
 
 .font-mono {
-  font-family: var(--font-mono), 'Courier New', monospace;
+  font-family: var(--font-stack-mono);
 }
 
 /* ============================================
