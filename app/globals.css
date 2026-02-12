@@ -120,23 +120,32 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: clamp(1.75rem, 2vw + 1.25rem, 3.5rem);
   font-weight: 900;
 }
 
 h2 {
-  font-size: 2.25rem;
+  font-size: clamp(1.375rem, 1.5vw + 0.875rem, 2.25rem);
   font-weight: 900;
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: clamp(1.125rem, 0.75vw + 0.875rem, 1.5rem);
   font-weight: 400;
 }
 
 h4 {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 0.5vw + 0.75rem, 1.25rem);
   font-weight: 400;
+}
+
+/* Responsive typography utility classes */
+.hero-title {
+  font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem) !important;
+}
+
+.page-title {
+  font-size: clamp(2rem, 3vw + 1.25rem, 3rem) !important;
 }
 
 /* Code typography */
@@ -338,4 +347,25 @@ a:hover {
 .prose .liquid-glass-panel {
   min-height: 100px;
   margin-bottom: 1.5rem;
+}
+
+/* ============================================
+   Table Scroll Wrapper
+   Pure CSS scroll shadows (Lea Verou technique)
+   background-attachment: local vs scroll
+   ============================================ */
+
+.table-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1rem;
+  background:
+    linear-gradient(to right, var(--surface) 30%, transparent),
+    linear-gradient(to left, var(--surface) 30%, transparent),
+    linear-gradient(to right, rgba(28, 26, 22, 0.15), transparent),
+    linear-gradient(to left, rgba(28, 26, 22, 0.15), transparent);
+  background-position: left center, right center, left center, right center;
+  background-size: 2rem 100%, 2rem 100%, 1rem 100%, 1rem 100%;
+  background-repeat: no-repeat;
+  background-attachment: local, local, scroll, scroll;
 }

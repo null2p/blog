@@ -19,7 +19,7 @@ export default function TagsPage() {
           Topics
         </p>
         <h1
-          className="text-5xl font-display mb-4 tracking-tight"
+          className="page-title font-display mb-4 tracking-tight"
           style={{ color: 'var(--text)', fontWeight: 900 }}
         >
           All Tags
@@ -40,7 +40,7 @@ export default function TagsPage() {
               <Link key={tag} href={`/tags/${tag}`}>
                 <article className="paper-card p-8 text-center cursor-pointer">
                   <h2
-                    className="text-3xl font-display mb-2 tracking-tight"
+                    className="font-display mb-2 tracking-tight"
                     style={{ color: 'var(--accent)', fontWeight: 900 }}
                   >
                     #{tag}

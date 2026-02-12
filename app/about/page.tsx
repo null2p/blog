@@ -17,7 +17,7 @@ export default function AboutPage() {
           Introduction
         </p>
         <h1
-          className="text-5xl font-display mb-4 tracking-tight"
+          className="page-title font-display mb-4 tracking-tight"
           style={{ color: 'var(--text)', fontWeight: 900 }}
         >
           About
@@ -33,7 +33,7 @@ export default function AboutPage() {
       <div className="paper-surface p-8">
         <div className="prose max-w-none space-y-6">
           <h2
-            className="text-3xl font-display tracking-tight"
+            className="font-display tracking-tight"
             style={{ color: 'var(--text)', fontWeight: 900 }}
           >
             Welcome!
@@ -47,7 +47,7 @@ export default function AboutPage() {
           </p>
 
           <h3
-            className="text-2xl font-display mt-6 tracking-tight"
+            className="font-display mt-6 tracking-tight"
             style={{ color: 'var(--text)', fontWeight: 400 }}
           >
             기술 스택
@@ -72,7 +72,7 @@ export default function AboutPage() {
           </ul>
 
           <h3
-            className="text-2xl font-display mt-6 tracking-tight"
+            className="font-display mt-6 tracking-tight"
             style={{ color: 'var(--text)', fontWeight: 400 }}
           >
             특징
@@ -91,7 +91,7 @@ export default function AboutPage() {
           </ul>
 
           <h3
-            className="text-2xl font-display mt-6 tracking-tight"
+            className="font-display mt-6 tracking-tight"
             style={{ color: 'var(--text)', fontWeight: 400 }}
           >
             연락처

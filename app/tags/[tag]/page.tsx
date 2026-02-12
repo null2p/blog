@@ -36,7 +36,7 @@ export default async function TagPage({ params }: TagPageProps) {
           Tagged
         </p>
         <h1
-          className="text-5xl font-display mb-4 tracking-tight"
+          className="page-title font-display mb-4 tracking-tight"
           style={{ color: 'var(--accent)', fontWeight: 900 }}
         >
           #{tag}

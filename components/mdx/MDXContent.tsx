@@ -13,21 +13,21 @@ interface MDXContentProps {
 const components = {
   h1: (props: any) => (
     <h1
-      className="text-4xl font-display mt-8 mb-4"
+      className="font-display mt-8 mb-4"
       style={{ color: 'var(--text)', fontWeight: 900 }}
       {...props}
     />
   ),
   h2: (props: any) => (
     <h2
-      className="text-3xl font-display mt-6 mb-3"
+      className="font-display mt-6 mb-3"
       style={{ color: 'var(--text)', fontWeight: 900 }}
       {...props}
     />
   ),
   h3: (props: any) => (
     <h3
-      className="text-2xl font-display mt-4 mb-2"
+      className="font-display mt-4 mb-2"
       style={{ color: 'var(--text)', fontWeight: 400 }}
       {...props}
     />
@@ -118,9 +118,9 @@ const components = {
     />
   ),
   table: (props: any) => (
-    <div className="overflow-x-auto mb-4">
+    <div className="table-scroll-wrapper">
       <table
-        className="min-w-full"
+        className="text-sm"
         style={{ border: '1px solid var(--border)' }}
         {...props}
       />
@@ -128,7 +128,7 @@ const components = {
   ),
   th: (props: any) => (
     <th
-      className="px-4 py-2 font-semibold"
+      className="px-3 py-1.5 font-semibold whitespace-nowrap"
       style={{
         border: '1px solid var(--border)',
         background: 'var(--surface-2)',
@@ -139,7 +139,7 @@ const components = {
   ),
   td: (props: any) => (
     <td
-      className="px-4 py-2"
+      className="px-3 py-1.5"
       style={{
         border: '1px solid var(--border)',
         color: 'var(--text)',

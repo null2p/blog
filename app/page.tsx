@@ -16,7 +16,7 @@ export default function HomePage() {
           Personal Blog
         </p>
         <h1
-          className="text-5xl md:text-7xl font-display mb-6 tracking-tight delay-2 animate-fade-in-up"
+          className="hero-title font-display mb-6 tracking-tight delay-2 animate-fade-in-up"
           style={{ color: 'var(--text)', fontWeight: 900 }}
         >
           Welcome to My Blog
@@ -64,7 +64,7 @@ export default function HomePage() {
       <section>
         <div className="flex items-center justify-between mb-8">
           <h2
-            className="text-4xl font-display tracking-tight"
+            className="font-display tracking-tight"
             style={{ color: 'var(--text)', fontWeight: 900 }}
           >
             Featured Posts

@@ -19,7 +19,7 @@ export default function PostsPage() {
           Archive
         </p>
         <h1
-          className="text-5xl font-display mb-4 tracking-tight"
+          className="page-title font-display mb-4 tracking-tight"
           style={{ color: 'var(--text)', fontWeight: 900 }}
         >
           All Posts

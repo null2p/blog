@@ -44,7 +44,7 @@ export default async function PostPage({ params }: PostPageProps) {
             Article
           </p>
           <h1
-            className="text-4xl md:text-5xl font-display tracking-tight delay-1 animate-fade-in-up"
+            className="page-title font-display tracking-tight delay-1 animate-fade-in-up"
             style={{ color: 'var(--text)', fontWeight: 900 }}
           >
             {title}
